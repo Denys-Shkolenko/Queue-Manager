@@ -1,2 +1,9 @@
+# IDEA
 .idea/
 target/
+
+# Stored Credential
+/src/main/resources/StoredCredential
+
+# Google Sheets Client Secret
+#/src/main/resources/google-sheets-client-secret.json
