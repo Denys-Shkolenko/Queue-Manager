@@ -1,9 +1,11 @@
-# IDEA
 .idea/
 target/
 
-# Stored Credential
-/src/main/resources/StoredCredential
+# Application properties
+#src/main/resources/app.properties
 
-# Google Sheets Client Secret
-/src/main/resources/google-sheets-client-secret.json
+# Service account properties
+#src/main/resources/service_account.properties
+
+# Service account private key
+src/main/resources/service_account_private_key.p12
