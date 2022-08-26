@@ -2,10 +2,10 @@
 target/
 
 # Application properties
-#src/main/resources/app.properties
+src/main/resources/app.properties
 
 # Service account properties
-#src/main/resources/service_account.properties
+src/main/resources/service_account.properties
 
 # Service account private key
 src/main/resources/service_account_private_key.p12
