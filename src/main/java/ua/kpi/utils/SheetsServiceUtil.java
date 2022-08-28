@@ -1,4 +1,4 @@
-package ua.kpi.util;
+package ua.kpi.utils;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
