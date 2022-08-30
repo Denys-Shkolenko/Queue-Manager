@@ -1,9 +1,11 @@
 package ua.kpi.models;
 
+import com.vladmihalcea.hibernate.type.interval.PostgreSQLIntervalType;
 import jakarta.persistence.*;
-import org.postgresql.util.PGInterval;
+import org.hibernate.annotations.Type;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
+import java.time.Duration;
 
 @Entity
 @Table(name = "subject_tables")
@@ -16,7 +18,7 @@ public class SubjectTable {
     private String subject_name;
     private String description;
     private String teacher;
-    private LocalDateTime lesson_datetime;
+    private Timestamp lesson_datetime;
     private int number_of_seats;
 
     private String subject_name_cell;
@@ -26,11 +28,43 @@ public class SubjectTable {
     private String start_numbering_cell;
     private String start_seats_cell;
 
-    private PGInterval time_interval_before_closing;
-    private PGInterval time_interval_before_opening;
-    private PGInterval lessons_interval;
+    @Type(PostgreSQLIntervalType.class)
+    private Duration time_interval_before_closing;
+
+    @Type(PostgreSQLIntervalType.class)
+    private Duration time_interval_before_opening;
+
+    @Type(PostgreSQLIntervalType.class)
+    private Duration lessons_interval;
 
     public SubjectTable() {}
+
+    public SubjectTable(String subjectName, String description,
+                        String teacher, Timestamp lessonDatetime,
+                        int numberOfSeats, String subjectNameCell,
+                        String descriptionCell, String teacherCell,
+                        String lessonDateCell, String startNumberingCell,
+                        String startSeatsCell, Duration timeIntervalBeforeClosing,
+                        Duration timeIntervalBeforeOpening, Duration lessonsInterval) {
+        this.setSubjectName(subjectName);
+        this.setDescription(description);
+        this.setTeacher(teacher);
+        this.setLessonDatetime(lessonDatetime);
+        this.setNumberOfSeats(numberOfSeats);
+        this.setSubjectNameCell(subjectNameCell);
+        this.setDescriptionCell(descriptionCell);
+        this.setTeacherCell(teacherCell);
+        this.setLessonDateCell(lessonDateCell);
+        this.setStartNumberingCell(startNumberingCell);
+        this.setStartSeatsCell(startSeatsCell);
+        this.setTimeIntervalBeforeClosing(timeIntervalBeforeClosing);
+        this.setTimeIntervalBeforeOpening(timeIntervalBeforeOpening);
+        this.setLessonsInterval(lessonsInterval);
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public String getSubjectName() {
         return subject_name;
@@ -56,11 +90,11 @@ public class SubjectTable {
         this.teacher = teacher;
     }
 
-    public LocalDateTime getLessonDatetime() {
+    public Timestamp getLessonDatetime() {
         return lesson_datetime;
     }
 
-    public void setLessonDatetime(LocalDateTime lessonDatetime) {
+    public void setLessonDatetime(Timestamp lessonDatetime) {
         this.lesson_datetime = lessonDatetime;
     }
 
@@ -123,27 +157,27 @@ public class SubjectTable {
         this.start_seats_cell = startSeatsCell;
     }
 
-    public PGInterval getTimeIntervalBeforeClosing() {
+    public Duration getTimeIntervalBeforeClosing() {
         return time_interval_before_closing;
     }
 
-    public void setTimeIntervalBeforeClosing(PGInterval timeIntervalBeforeClosing) {
+    public void setTimeIntervalBeforeClosing(Duration timeIntervalBeforeClosing) {
         this.time_interval_before_closing = timeIntervalBeforeClosing;
     }
 
-    public PGInterval getTimeIntervalBeforeOpening() {
+    public Duration getTimeIntervalBeforeOpening() {
         return time_interval_before_opening;
     }
 
-    public void setTimeIntervalBeforeOpening(PGInterval timeIntervalBeforeOpening) {
+    public void setTimeIntervalBeforeOpening(Duration timeIntervalBeforeOpening) {
         this.time_interval_before_opening = timeIntervalBeforeOpening;
     }
 
-    public PGInterval getLessonsInterval() {
+    public Duration getLessonsInterval() {
         return lessons_interval;
     }
 
-    public void setLessonsInterval(PGInterval lessonsInterval) {
+    public void setLessonsInterval(Duration lessonsInterval) {
         this.lessons_interval = lessonsInterval;
     }
 }
